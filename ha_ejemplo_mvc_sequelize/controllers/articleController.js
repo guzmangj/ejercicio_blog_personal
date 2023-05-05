@@ -24,9 +24,6 @@ async function update(req, res) {}
 // Remove the specified resource from storage.
 async function destroy(req, res) {}
 
-// Otros handlers...
-// ...
-
 module.exports = {
   index,
   show,
