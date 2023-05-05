@@ -10,19 +10,39 @@ async function show(req, res) {
 }
 
 // Show the form for creating a new resource
-async function create(req, res) {}
+async function create(req, res) {
+  res.render("createArticle");
+}
 
 // Store a newly created resource in storage.
-async function store(req, res) {}
+async function store(req, res) {
+  const newArticle = await Article.create({
+    title: req.body.title,
+    content: req.body.content,
+  });
+  res.redirect("/panel");
+}
 
 // Show the form for editing the specified resource.
-async function edit(req, res) {}
+async function edit(req, res) {
+  const articles = await Article.findByPk(req.params.id);
+  res.render("editArticle", { articles });
+}
 
 // Update the specified resource in storage.
-async function update(req, res) {}
+async function update(req, res) {
+  const editArticle = await Article.update({
+    title: req.body.title,
+    content: req.body.content,
+  });
+  res.redirect("/panel");
+}
 
 // Remove the specified resource from storage.
-async function destroy(req, res) {}
+async function destroy(req, res) {
+  const deleteArticle = await Article.destroy(req.params.id);
+  res.redirect("/panel");
+}
 
 module.exports = {
   index,
