@@ -21,7 +21,6 @@ class Article extends Model {
         modelName: "article",
       },
     );
-
     return Article;
   }
 }

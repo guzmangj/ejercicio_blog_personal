@@ -23,7 +23,9 @@
       <div class="row">
         <% for (const article of articles) { %>
         <div class="col-12 d-inline justify-content-center">
-          <h2 id="articleTitle" class=""><a href="“#”"><%= article.title %></a></h2>
+          <h2 id="articleTitle" class="">
+            <a href="http://localhost:3000/articulos/<%=article.id%>"><%= article.title %></a>
+          </h2>
           <p id="articleTitle">Creado por xxxxxx el <%= article.createdAt %></p>
         </div>
         <%}%>
