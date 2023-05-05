@@ -32,6 +32,10 @@ async function showAboutUs(req, res) {
   res.render("aboutUs");
 }
 
+async function showPanel(req, res) {
+  const articles = await Article.findAll();
+  res.render("admin", { articles });
+}
 // Otros handlers...
 // ...
 
@@ -39,4 +43,5 @@ module.exports = {
   showHome,
   showPanel,
   showAboutUs,
+  showPanel,
 };
