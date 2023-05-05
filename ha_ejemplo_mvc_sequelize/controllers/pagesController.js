@@ -23,8 +23,9 @@ async function showHome(req, res) {
   res.render("home", { articles });
 }
 
-async function showContact(req, res) {
-  res.render("contact");
+async function showPanel(req, res) {
+  const articles = await Article.findAll();
+  res.render("admin", { articles });
 }
 
 async function showAboutUs(req, res) {
@@ -36,6 +37,6 @@ async function showAboutUs(req, res) {
 
 module.exports = {
   showHome,
-  showContact,
+  showPanel,
   showAboutUs,
 };
