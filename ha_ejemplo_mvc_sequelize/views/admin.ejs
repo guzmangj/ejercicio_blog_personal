@@ -16,7 +16,7 @@
     <div class="container mt-3">
       <div class="d-flex justify-content-between">
         <h1>Articles</h1>
-        <a class="btn btn-success mb-3" href="/usuarios/crear">Nuevo</a>
+        <a class="btn btn-success mb-3" href="/articulos/crear">Nuevo</a>
       </div>
       <table class="table table-striped table-bordered">
         <thead>
@@ -41,15 +41,8 @@
             <td></td>
 
             <td>
-              <a class="btn btn-primary mb-1" href="/usuarios/editar/<%= article.id %>">Editar</a>
-              <a
-                class="btn btn-danger mb-1"
-                method="GET"
-                action="/usuarios"
-                href="/usuarios/eliminar/<%= article.id %>"
-              >
-                Eliminar
-              </a>
+              <a class="btn btn-primary mb-1" href="/articulos/<%= article.id %>/editar">Editar</a>
+              <a class="btn btn-danger mb-1" method="DELETE" action="/articulos"> Eliminar </a>
             </td>
           </tr>
           <% } %>
