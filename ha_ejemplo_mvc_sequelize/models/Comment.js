@@ -4,6 +4,9 @@ class Comment extends Model {
   static initModel(sequelize) {
     Comment.init(
       {
+        name: {
+          type: DataTypes.STRING,
+        },
         content: {
           type: DataTypes.TEXT,
         },

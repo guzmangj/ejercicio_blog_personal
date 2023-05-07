@@ -41,8 +41,10 @@
             <td></td>
 
             <td>
-              <a class="btn btn-primary mb-1" href="/articulos/<%= article.id %>/editar">Editar</a>
-              <a class="btn btn-danger mb-1" method="DELETE" action="/articulos"> Eliminar </a>
+              <a class="btn btn-primary mb-1" method="PATCH" href="/articulos/<%= article.id %>"
+                >Editar</a
+              >
+              <a class="btn btn-danger mb-1" method="DELETE"> Eliminar </a>
             </td>
           </tr>
           <% } %>
