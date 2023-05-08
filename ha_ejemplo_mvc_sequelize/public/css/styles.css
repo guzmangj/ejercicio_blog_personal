@@ -1,1 +1,39 @@
-/* Colocar aquí CSS "propio" */
+.articleTitle {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.articleInfo {
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  color: rgb(143, 143, 143);
+  font-size: 0.8rem;
+}
+
+.articleComment {
+  font-family: "Times New Roman", Times, serif;
+  color: rgb(0, 0, 0);
+  font-size: 0.9rem;
+}
+
+.articleContent {
+  font-family: "Times New Roman", Times, serif;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+}
+
+.mainTitle {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+}
+
+.articleIndex {
+  width: 600px;
+}
+
+.comment {
+  font-weight: 800;
+}

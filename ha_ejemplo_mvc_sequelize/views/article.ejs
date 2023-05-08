@@ -11,12 +11,13 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link type="text/css" rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <div class="container">
+    <div class="container articleIndex">
       <div class="row text-center">
-        <h1><%= articles.title %></h1>
+        <h1 class="mainTitle"><%= articles.title %></h1>
         <p>
           Creado por <%= articles.user.firstname %> <%= articles.user.lastname %> el <%=
           articles.createdAt %>
@@ -24,12 +25,12 @@
       </div>
       <div class="row">
         <div class="col-12 d-inline justify-content-center">
-          <p><%= articles.content %></p>
+          <p class="articleContent"><%= articles.content %></p>
         </div>
       </div>
       <hr class="hr hr2" />
       <div class="row mb-4">
-        <h3>Add your comment</h3>
+        <h5 class="comment">Add your comment</h5>
         <form method="post">
           <!-- Name input -->
           <div class="form-outline">
@@ -56,15 +57,15 @@
           </div>
 
           <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-block">Send</button>
+          <button type="submit" class="btn btn-primary btn-block w-100">Send</button>
         </form>
       </div>
-      <div class="row">
-        <h3>Comments ()</h3>
+      <div>
+        <h5 class="comment">Comments ()</h5>
         <% for (const comment of comments) {%>
         <div>
-          <p class="mb-0"><%= comment.content %></p>
-          <p><%= comment.name %></p>
+          <p class="articleComment mb-0">"<%= comment.content %>"</p>
+          <p class="articleInfo mt-2"><%= comment.name %></p>
         </div>
         <hr class="hr" />
         <%}%>

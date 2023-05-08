@@ -11,47 +11,50 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <%- include("./partials/navbar.ejs") %>
+    <div class="row">
+      <div class="container mt-3">
+        <div class="d-flex justify-content-between">
+          <h1>Articles</h1>
+          <a class="btn btn-success mb-3" href="/articulos/crear">Nuevo</a>
+        </div>
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Title</th>
+              <th scope="col">Content</th>
+              <th scope="col">Created</th>
+              <th scope="col">Author</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (const article of articles) { %>
+            <tr>
+              <th scope="row"><%= article.id %></th>
+              <td><%= article.title %></td>
+              <td><%= article.content.substring(0, 80)+"..." %></td>
+              <td><%= article.createdAt%></td>
+              <td><%= article.user.firstname%> <%= article.user.lastname%></td>
 
-    <div class="container mt-3">
-      <div class="d-flex justify-content-between">
-        <h1>Articles</h1>
-        <a class="btn btn-success mb-3" href="/articulos/crear">Nuevo</a>
+              <td>
+                <a
+                  class="btn btn-primary mb-1"
+                  method="GET"
+                  href="/articulos/<%= article.id%>/editar"
+                  >Editar</a
+                >
+                <a class="btn btn-danger mb-1" method="DELETE"> Eliminar </a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
       </div>
-      <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Title</th>
-            <th scope="col">Content</th>
-            <th scope="col">Image</th>
-            <th scope="col">Created at</th>
-            <th scope="col">Author</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for (const article of articles) { %>
-          <tr>
-            <th scope="row"><%= article.id %></th>
-            <td><%= article.title %></td>
-            <td><%= article.content.substring(0, 80)+"..." %></td>
-            <td></td>
-            <td><%= article.createdAt%></td>
-            <td><%= article.user.firstname%> <%= article.user.lastname%></td>
-
-            <td>
-              <a class="btn btn-primary mb-1" method="GET" href="/articulos/<%= article.id%>/editar"
-                >Editar</a
-              >
-              <a class="btn btn-danger mb-1" method="DELETE"> Eliminar </a>
-            </td>
-          </tr>
-          <% } %>
-        </tbody>
-      </table>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

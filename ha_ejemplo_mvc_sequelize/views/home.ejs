@@ -11,30 +11,33 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link type="text/css" rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <%- include("./partials/navbar.ejs") %>
     <div class="container">
       <div class="row text-center">
-        <h1>Hack the blog</h1>
+        <h1 class="mainTitle">Hack the blog</h1>
         <p>El Blog de Hack Academy</p>
-        <!-- <img class="" src="/public//img/andrew-neel-cckf4TsHAuw-unsplash.jpg" alt="home image" /> -->
       </div>
-      <div class="row">
+      <div class="container articleIndex">
         <% for (const article of articles) { %>
         <div class="col-12 d-inline justify-content-center">
-          <h2 id="articleTitle" class="">
-            <a href="http://localhost:3000/articulos/<%=article.id%>"><%= article.title %></a>
+          <h2>
+            <a class="articleTitle" href="http://localhost:3000/articulos/<%=article.id%>"
+              ><%= article.title %></a
+            >
           </h2>
-          <p id="articleTitle">
+          <p class="articleInfo">
             Creado por <%= article.user.firstname %> <%= article.user.lastname %> el <%=
             article.createdAt %>
           </p>
         </div>
+        <hr class="hr" />
         <%}%>
       </div>
     </div>
-    <hr class="hr hr2" />
+    <hr class="hr" />
     <%- include("./partials/footer.ejs") %>
 
     <script

@@ -11,6 +11,7 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <%- include("./partials/navbar.ejs") %>
@@ -22,7 +23,6 @@
         <form method="POST" action="/articulos/<%=articles.id%>?_method=PATCH">
           <div class="my-3">
             <select name="userId" class="form-select" aria-label="Default select example">
-              <option selected>Authors</option>
               <% for (const user of users) { %>
               <option value="<%user.id%>"><%= user.firstname%> <%= user.lastname%></option>
               <%}%>
