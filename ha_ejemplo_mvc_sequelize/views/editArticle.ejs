@@ -21,14 +21,12 @@
         </div>
         <form method="POST" action="/articulos?method=PATCH">
           <div class="my-3">
-            <label for="" class="form-label fw-bold">Author</label>
-            <input
-              class="form-control"
-              id="inputFirstname"
-              placeholder="Author name..."
-              name="author"
-              value="<%= articles.user.firstname %> <%= articles.user.lastname %>"
-            />
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Authors</option>
+              <% for (const user of users) { %>
+              <option value=""><%= user.firstname%> <%= user.lastname%></option>
+              <%}%>
+            </select>
           </div>
           <div class="mb-3">
             <label class="form-label fw-bold">Title</label>
