@@ -24,7 +24,7 @@
             <select class="form-select" aria-label="Default select example">
               <option selected>Authors</option>
               <% for (const user of users) { %>
-              <option value=""><%= user.firstname%> <%= user.lastname%></option>
+              <option value="" name="<%=user.id%>"><%= user.firstname%> <%= user.lastname%></option>
               <%}%>
             </select>
           </div>
