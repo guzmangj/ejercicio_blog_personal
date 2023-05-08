@@ -11,7 +11,7 @@ router.get("/crear", articleController.create);
 router.post("/", articleController.store);
 router.get("/:id", articleController.show);
 router.get("/:id/editar", articleController.edit);
-
+router.post("/:id", articleController.newComment);
 router.patch("/:id", articleController.update);
 router.delete("/:id", articleController.destroy);
 

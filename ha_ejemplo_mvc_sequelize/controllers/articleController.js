@@ -57,6 +57,17 @@ async function destroy(req, res) {
   res.redirect("/panel");
 }
 
+// Post
+async function newComment(req, res) {
+  const { newName, newContent } = req.body;
+  const newComment = await Comment.create({
+    content: newContent,
+    name: newName,
+    articleId: req.params.id,
+  });
+  res.redirect(`/articulos/${req.params.id}`);
+}
+
 module.exports = {
   index,
   show,
@@ -65,4 +76,5 @@ module.exports = {
   edit,
   update,
   destroy,
+  newComment,
 };
