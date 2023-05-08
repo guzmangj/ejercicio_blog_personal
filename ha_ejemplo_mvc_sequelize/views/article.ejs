@@ -17,7 +17,10 @@
     <div class="container">
       <div class="row text-center">
         <h1><%= articles.title %></h1>
-        <p>Creado por xxxxxx el <%= articles.createdAt %></p>
+        <p>
+          Creado por <%= articles.user.firstname %> <%= articles.user.lastname %> el <%=
+          articles.createdAt %>
+        </p>
       </div>
       <div class="row">
         <div class="col-12 d-inline justify-content-center">
@@ -51,12 +54,7 @@
       </div>
       <div class="row">
         <h3>Comments ()</h3>
-        <% for (const comment of comments) { %>
-        <div>
-          <p><%= comment.content %></p>
-          <p><%= comment.name %></p>
-        </div>
-        <%}%>
+        <p></p>
       </div>
     </div>
     <hr class="hr hr2" />
