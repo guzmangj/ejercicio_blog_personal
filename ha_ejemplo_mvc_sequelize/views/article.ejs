@@ -25,16 +25,17 @@
         </div>
       </div>
       <hr class="hr hr2" />
-      <div class="row">
+      <div class="row mb-4">
+        <h3>Add your comment</h3>
         <form>
           <!-- Name input -->
-          <div class="form-outline mb-4">
+          <div class="form-outline">
             <input type="text" id="form4Example1" class="form-control" placeholder="Name" />
             <label class="form-label" for="form4Example1"></label>
           </div>
 
           <!-- Message input -->
-          <div class="form-outline mb-4">
+          <div class="form-outline">
             <textarea
               class="form-control"
               id="form4Example3"
@@ -45,8 +46,17 @@
           </div>
 
           <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+          <button type="submit" class="btn btn-primary btn-block">Send</button>
         </form>
+      </div>
+      <div class="row">
+        <h3>Comments ()</h3>
+        <% for (const comment of comments) { %>
+        <div>
+          <p><%= comment.content %></p>
+          <p><%= comment.name %></p>
+        </div>
+        <%}%>
       </div>
     </div>
     <hr class="hr hr2" />
