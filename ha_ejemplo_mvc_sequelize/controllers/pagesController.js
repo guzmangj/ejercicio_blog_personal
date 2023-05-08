@@ -16,10 +16,10 @@
  * no debería existir.
  */
 
-const { Article, Users } = require("../models");
+const { Article, User } = require("../models");
 
 async function showHome(req, res) {
-  const articles = await Article.findAll();
+  const articles = await Article.findAll({ order: [["id", "ASC"]], includes: User });
   res.render("home", { articles });
 }
 
@@ -32,10 +32,6 @@ async function showAboutUs(req, res) {
   res.render("aboutUs");
 }
 
-async function showPanel(req, res) {
-  const articles = await Article.findAll();
-  res.render("admin", { articles });
-}
 // Otros handlers...
 // ...
 
@@ -43,5 +39,4 @@ module.exports = {
   showHome,
   showPanel,
   showAboutUs,
-  showPanel,
 };
