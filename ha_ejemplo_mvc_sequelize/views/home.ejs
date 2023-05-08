@@ -26,7 +26,10 @@
           <h2 id="articleTitle" class="">
             <a href="http://localhost:3000/articulos/<%=article.id%>"><%= article.title %></a>
           </h2>
-          <p id="articleTitle">Creado por <%= article.userId %> el <%= article.createdAt %></p>
+          <p id="articleTitle">
+            Creado por <%= article.user.firstname %> <%= article.user.lastname %> el <%=
+            article.createdAt %>
+          </p>
         </div>
         <%}%>
       </div>

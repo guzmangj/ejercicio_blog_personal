@@ -19,7 +19,9 @@
 const { Article, User } = require("../models");
 
 async function showHome(req, res) {
-  const articles = await Article.findAll({ order: [["id", "ASC"]], includes: User });
+  const articles = await Article.findAll({
+    include: [{ model: User, attributes: ["id", "firstname", "lastname"] }],
+  });
   res.render("home", { articles });
 }
 
