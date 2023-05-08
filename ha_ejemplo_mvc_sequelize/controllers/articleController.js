@@ -16,7 +16,6 @@ async function show(req, res) {
   const comments = await Comment.findAll({
     where: { articleId: req.params.id },
   });
-
   res.render("article", { articles, comments });
 }
 
@@ -33,6 +32,16 @@ async function store(req, res) {
     content: req.body.content,
   });
   res.redirect("/panel");
+}
+
+async function newComment(req, res) {
+  const { newName, newContent } = req.body;
+  const newComment = await Comment.create({
+    content: newContent,
+    name: newName,
+    articleId: req.params.id,
+  });
+  res.redirect(`/articulos/${req.params.id}`);
 }
 
 // Show the form for editing the specified resource.
@@ -57,7 +66,11 @@ async function destroy(req, res) {
   res.redirect("/panel");
 }
 
+<<<<<<< HEAD
 // Post
+=======
+// POST comment
+>>>>>>> 41e045fbf21664c0590bcdf53debe2809e593ad6
 async function newComment(req, res) {
   const { newName, newContent } = req.body;
   const newComment = await Comment.create({
