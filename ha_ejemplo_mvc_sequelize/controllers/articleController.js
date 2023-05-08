@@ -16,7 +16,6 @@ async function show(req, res) {
   const comments = await Comment.findAll({
     where: { articleId: req.params.id },
   });
-
   res.render("article", { articles, comments });
 }
 

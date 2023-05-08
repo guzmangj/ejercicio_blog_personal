@@ -16,7 +16,7 @@
  * no debería existir.
  */
 
-const { Article, Comment, User } = require("../models");
+const { Article, User } = require("../models");
 
 async function showHome(req, res) {
   const articles = await Article.findAll({
