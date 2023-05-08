@@ -72,11 +72,7 @@ async function destroy(req, res) {
   res.redirect("/panel");
 }
 
-<<<<<<< HEAD
-// Post
-=======
 // POST comment
->>>>>>> 41e045fbf21664c0590bcdf53debe2809e593ad6
 async function newComment(req, res) {
   const { newName, newContent } = req.body;
   const newComment = await Comment.create({
