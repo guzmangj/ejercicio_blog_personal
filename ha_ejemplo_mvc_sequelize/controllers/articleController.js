@@ -5,27 +5,19 @@ async function index(req, res) {}
 
 // Display the specified resource.
 async function show(req, res) {
-  const articles = await Article.findByPk(
-    req.params.id,
-    {
-      include: [
-        {
-          model: User,
-          attributes: ["id", "firstname", "lastname"],
-        },
-      ],
-    },
-    {
-      include: [
-        {
-          model: Comment,
-          attributes: ["id", "name", "content", "createdAt"],
-        },
-      ],
-    },
-  );
+  const articles = await Article.findByPk(req.params.id, {
+    include: [
+      {
+        model: User,
+        attributes: ["id", "firstname", "lastname"],
+      },
+    ],
+  });
+  const comments = await Comment.findAll({
+    where: { articleId: req.params.id },
+  });
 
-  res.render("article", { articles });
+  res.render("article", { articles, comments });
 }
 
 // Show the form for creating a new resource
