@@ -54,7 +54,13 @@
       </div>
       <div class="row">
         <h3>Comments ()</h3>
-        <p><%= comments.content %></p>
+        <% for (const comment of comments) { %>
+        <div>
+          <p class="mb-0"><%= comment.content %></p>
+          <p><%= comment.name %></p>
+        </div>
+        <hr class="hr" />
+        <%} %>
       </div>
     </div>
     <hr class="hr hr2" />
