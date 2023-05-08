@@ -30,6 +30,7 @@ async function store(req, res) {
   const newArticle = await Article.create({
     title: req.body.title,
     content: req.body.content,
+    userId: req.body.userId,
   });
   res.redirect("/panel");
 }
@@ -53,10 +54,15 @@ async function edit(req, res) {
 
 // Update the specified resource in storage.
 async function update(req, res) {
-  const editArticle = await Article.update({
-    title: req.body.title,
-    content: req.body.content,
-  });
+  const editArticle = await Article.update(
+    {
+      title: req.body.title,
+      content: req.body.content,
+    },
+    {
+      where: { id: req.params.id },
+    },
+  );
   res.redirect("/panel");
 }
 

@@ -19,7 +19,7 @@
         <div class="py-2 border-bottom">
           <h3>Edit article</h3>
         </div>
-        <form method="POST" action="/articulos?method=PATCH">
+        <form method="POST" action="/articulos/<%=articles.id%>?_method=PATCH">
           <div class="my-3">
             <select class="form-select" aria-label="Default select example">
               <option selected>Authors</option>
