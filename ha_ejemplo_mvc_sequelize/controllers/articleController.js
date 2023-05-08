@@ -59,7 +59,9 @@ async function update(req, res) {
       title: req.body.title,
       content: req.body.content,
     },
-    { where: { id: req.params.id } },
+    {
+      where: { id: req.params.id },
+    },
   );
   res.redirect("/panel");
 }
