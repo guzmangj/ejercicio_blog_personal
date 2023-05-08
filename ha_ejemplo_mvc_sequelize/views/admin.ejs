@@ -38,9 +38,9 @@
             <th scope="row"><%= article.id %></th>
             <td><%= article.title %></td>
             <td><%= article.content.substring(0, 80)+"..." %></td>
-            <td><%= article.user.firstname%> <%= article.user.lastname%></td>
-            <td><%= article.createdAt%></td>
             <td></td>
+            <td><%= article.createdAt%></td>
+            <td><%= article.user.firstname%> <%= article.user.lastname%></td>
 
             <td>
               <a class="btn btn-primary mb-1" method="GET" href="/articulos/<%= article.id%>/editar"
