@@ -30,10 +30,10 @@
       <hr class="hr hr2" />
       <div class="row mb-4">
         <h3>Add your comment</h3>
-        <form>
+        <form method="POST">
           <!-- Name input -->
           <div class="form-outline">
-            <input type="text" id="form4Example1" class="form-control" placeholder="Name" />
+            <input type="text" class="form-control" placeholder="Name" name="newName" />
             <label class="form-label" for="form4Example1"></label>
           </div>
 
@@ -41,9 +41,9 @@
           <div class="form-outline">
             <textarea
               class="form-control"
-              id="form4Example3"
               rows="4"
               placeholder="Message"
+              name="newContent"
             ></textarea>
             <label class="form-label" for="form4Example3"></label>
           </div>
