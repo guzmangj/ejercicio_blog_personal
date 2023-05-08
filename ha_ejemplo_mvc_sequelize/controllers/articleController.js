@@ -34,6 +34,16 @@ async function store(req, res) {
   res.redirect("/panel");
 }
 
+async function newComment(req, res) {
+  const { newName, newContent } = req.body;
+  const newComment = await Comment.create({
+    content: newContent,
+    name: newName,
+    articleId: req.params.id,
+  });
+  res.redirect(`/articulos/${req.params.id}`);
+}
+
 // Show the form for editing the specified resource.
 async function edit(req, res) {
   const articles = await Article.findByPk(req.params.id);
@@ -64,4 +74,5 @@ module.exports = {
   edit,
   update,
   destroy,
+  newComment,
 };
