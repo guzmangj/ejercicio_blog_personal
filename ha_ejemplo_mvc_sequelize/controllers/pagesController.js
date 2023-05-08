@@ -16,7 +16,7 @@
  * no debería existir.
  */
 
-const { Article, User } = require("../models");
+const { Article, Comment, User } = require("../models");
 
 async function showHome(req, res) {
   const articles = await Article.findAll({
@@ -32,7 +32,14 @@ async function showHome(req, res) {
 }
 
 async function showPanel(req, res) {
-  const articles = await Article.findAll();
+  const articles = await Article.findAll({
+    include: [
+      {
+        model: User,
+        attributes: ["id", "firstname", "lastname"],
+      },
+    ],
+  });
   res.render("admin", { articles });
 }
 
