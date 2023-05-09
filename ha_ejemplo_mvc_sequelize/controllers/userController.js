@@ -2,16 +2,27 @@ const { User } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  res.send("desde el index de usuarios")
+  res.render("userLogin");
 }
+
 // Display the specified resource.
 async function show(req, res) {}
 
 // Show the form for creating a new resource
-async function create(req, res) {}
+async function create(req, res) {
+  res.render("userRegister");
+}
 
 // Store a newly created resource in storage.
-async function store(req, res) {}
+async function store(req, res) {
+  const newUser = await User.create({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    password: req.body.password,
+  });
+  res.redirect("/login");
+}
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {}
@@ -35,5 +46,5 @@ module.exports = {
   edit,
   update,
   destroy,
-  login
+  login,
 };
