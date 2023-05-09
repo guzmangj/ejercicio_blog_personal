@@ -44,7 +44,9 @@
               <a class="btn btn-primary mb-1" method="GET" href="/articulos/<%= article.id%>/editar"
                 >Editar</a
               >
-              <a class="btn btn-danger mb-1" method="DELETE"> Eliminar </a>
+              <form method="POST" action="/articulos/<%=article.id%>?_method=DELETE">
+                <button type="submit" class="btn btn-danger mb-1">Eliminar</button>
+              </form>
             </td>
           </tr>
           <% } %>
