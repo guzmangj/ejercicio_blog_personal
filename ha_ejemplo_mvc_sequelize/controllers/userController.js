@@ -1,4 +1,7 @@
 const { User } = require("../models");
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const app = express();
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -15,11 +18,13 @@ async function create(req, res) {
 
 // Store a newly created resource in storage.
 async function store(req, res) {
+  const hashPassword = req.body.password;
+  const hashedPassword = await bcrypt.hash(hashPassword, 10);
   const newUser = await User.create({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     email: req.body.email,
-    password: req.body.password,
+    password: hashedPassword,
   });
   res.redirect("/usuarios/login");
 }
