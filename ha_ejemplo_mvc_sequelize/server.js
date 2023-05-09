@@ -23,9 +23,10 @@ app.use(
     })
 )
 
-passport.use()
+app.use(passport.session())
 
-app.use(passport.session(
+
+passport.use(
     new LocalStrategy(async function (username, password, done){
         try{
             // Buscar en la Base de datos
@@ -42,7 +43,7 @@ app.use(passport.session(
             return done(error)
         }
     })
-));
+);
 
 app.get("/welcome", function(req, res) {
     if(req.isAuthenticated()) {
