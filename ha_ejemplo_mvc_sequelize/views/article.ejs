@@ -63,7 +63,7 @@
         </form>
       </div>
       <div>
-        <h5 class="comment">Comments ()</h5>
+        <h5 class="comment">Comments (<%= comments.length  %>)</h5>
         <% for (const comment of comments) {%>
         <div>
           <p class="articleComment mb-0">"<%= comment.content %>"</p>
