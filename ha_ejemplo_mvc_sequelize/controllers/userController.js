@@ -21,7 +21,7 @@ async function store(req, res) {
     email: req.body.email,
     password: req.body.password,
   });
-  res.redirect("/login");
+  res.redirect("/usuarios/login");
 }
 
 // Show the form for editing the specified resource.
