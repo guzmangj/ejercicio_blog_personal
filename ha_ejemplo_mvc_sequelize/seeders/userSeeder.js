@@ -10,7 +10,7 @@ module.exports = async () => {
     user.push({
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
-      email: faker.internet.email(firstname),
+      email: faker.internet.email(),
       password: "12345",
     });
   }
