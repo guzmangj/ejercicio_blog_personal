@@ -1,8 +1,9 @@
 const { User } = require("../models");
 
 // Display a listing of the resource.
-async function index(req, res) {}
-
+async function index(req, res) {
+  res.send("desde el index de usuarios")
+}
 // Display the specified resource.
 async function show(req, res) {}
 
@@ -22,7 +23,9 @@ async function update(req, res) {}
 async function destroy(req, res) {}
 
 // Otros handlers...
-// ...
+async function login(req, res) {
+  res.send("tamos en el login");
+}
 
 module.exports = {
   index,
@@ -32,4 +35,5 @@ module.exports = {
   edit,
   update,
   destroy,
+  login
 };

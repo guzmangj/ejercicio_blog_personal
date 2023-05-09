@@ -12,5 +12,6 @@ router.get("/:id", userController.show);
 router.get("/:id/editar", userController.edit);
 router.patch("/:id", userController.update);
 router.delete("/:id", userController.destroy);
+router.get("/login", userController.login);
 
 module.exports = router;
