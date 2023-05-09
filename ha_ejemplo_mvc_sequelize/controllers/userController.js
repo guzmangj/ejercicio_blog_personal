@@ -40,7 +40,20 @@ async function destroy(req, res) {}
 
 // Otros handlers...
 async function login(req, res) {
-  res.send("tamos en el login");
+  const user = await User.findAll({ where: { email: req.body.email } });
+  const inputPassword = req.body.password;
+  const storedHash = user.password;
+
+  const passwordCheck = bcrypt.compare(inputPassword, storedHash);
+  if (passwordCheck) {
+    res.redirect("/welcome");
+  } else {
+    res.redirect("/login");
+  }
+}
+
+async function showWelcome(req, res) {
+  res.render("userWelcome");
 }
 
 module.exports = {
@@ -50,6 +63,7 @@ module.exports = {
   store,
   edit,
   update,
+  showWelcome,
   destroy,
   login,
 };

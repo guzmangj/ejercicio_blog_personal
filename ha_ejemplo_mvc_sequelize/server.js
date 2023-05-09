@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const { User } = require("./models");
+
 const methodOverride = require("method-override");
 const express = require("express");
 const routes = require("./routes");
@@ -26,21 +28,27 @@ app.use(
 app.use(passport.session());
 
 passport.use(
-  new LocalStrategy(async function (email, password, done) {
-    try {
-      // Buscar en la Base de datos
-      const user = await User.findOne({ where: { email: email } });
-      if (!user.email) {
-        done(null, false, { message: "Usuario y/o Password incorrectos" });
-      } else if (!user.password) {
-        done(null, false, { message: "Usuario y/o Password incorrectos" });
-      } else {
-        return done(null, user);
+  new LocalStrategy(
+    {
+      usernameField: "email",
+    },
+    async function (username, password, done) {
+      try {
+        // Buscar en la Base de datos
+        const user = await User.findOne({ where: { email: username } });
+
+        if (!username) {
+          done(null, false, { message: "Usuario y/o Password incorrectos" });
+        } else if (!password) {
+          done(null, false, { message: "Usuario y/o Password incorrectos" });
+        } else {
+          return done(null, user);
+        }
+      } catch (error) {
+        return done(error);
       }
-    } catch (error) {
-      return done(error);
-    }
-  }),
+    },
+  ),
 );
 
 passport.serializeUser((user, done) => {
@@ -64,10 +72,11 @@ app.get("/welcome", function (req, res) {
 });
 
 app.post(
-  "/login",
+  "/usuarios/login",
   passport.authenticate("local", {
-    successRedirect: "/welcome",
-    failureRedirect: "/login",
+    successRedirect: "/usuarios/welcome",
+    failureRedirect: "/",
+    failatureFlash: true,
   }),
 );
 
