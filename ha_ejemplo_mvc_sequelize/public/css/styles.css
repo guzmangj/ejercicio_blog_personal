@@ -26,7 +26,7 @@
 
 .mainTitle {
   text-decoration: none;
-  color: black;
+  color: rgb(255, 255, 255);
   font-weight: 800;
 }
 
@@ -36,4 +36,11 @@
 
 .comment {
   font-weight: 800;
+}
+
+.mainImage {
+  background-image: url(../img/andrew-neel-cckf4TsHAuw-unsplash.jpg);
+  height: 300px;
+  background-size: cover;
+  background-position: center;
 }

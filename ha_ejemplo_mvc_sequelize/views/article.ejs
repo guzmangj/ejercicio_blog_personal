@@ -15,14 +15,16 @@
   </head>
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <div class="container articleIndex">
-      <div class="row text-center">
+    <div class="text-center mainImage vw-100 d-flex align-items-center justify-content-center mb-3">
+      <div>
         <h1 class="mainTitle"><%= articles.title %></h1>
-        <p>
+        <p class="text-white">
           Creado por <%= articles.user.firstname %> <%= articles.user.lastname %> el <%=
           articles.createdAt %>
         </p>
       </div>
+    </div>
+    <div class="container articleIndex">
       <div class="row">
         <div class="col-12 d-inline justify-content-center">
           <p class="articleContent"><%= articles.content %></p>

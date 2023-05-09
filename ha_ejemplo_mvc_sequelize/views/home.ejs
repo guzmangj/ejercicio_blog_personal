@@ -15,27 +15,27 @@
   </head>
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <div class="container">
-      <div class="row text-center">
+    <div class="text-center mainImage vw-100 d-flex align-items-center justify-content-center mb-3">
+      <div>
         <h1 class="mainTitle">Hack the blog</h1>
-        <p>El Blog de Hack Academy</p>
+        <p class="text-white">El Blog de Hack Academy</p>
       </div>
-      <div class="container articleIndex">
-        <% for (const article of articles) { %>
-        <div class="col-12 d-inline justify-content-center">
-          <h2>
-            <a class="articleTitle" href="http://localhost:3000/articulos/<%=article.id%>"
-              ><%= article.title %></a
-            >
-          </h2>
-          <p class="articleInfo">
-            Creado por <%= article.user.firstname %> <%= article.user.lastname %> el <%=
-            article.createdAt %>
-          </p>
-        </div>
-        <hr class="hr" />
-        <%}%>
+    </div>
+    <div class="container articleIndex">
+      <% for (const article of articles) { %>
+      <div class="col-12 d-inline justify-content-center">
+        <h2>
+          <a class="articleTitle" href="http://localhost:3000/articulos/<%=article.id%>"
+            ><%= article.title %></a
+          >
+        </h2>
+        <p class="articleInfo">
+          Creado por <%= article.user.firstname %> <%= article.user.lastname %> el <%=
+          article.createdAt %>
+        </p>
       </div>
+      <hr class="hr" />
+      <%}%>
     </div>
     <hr class="hr" />
     <%- include("./partials/footer.ejs") %>
