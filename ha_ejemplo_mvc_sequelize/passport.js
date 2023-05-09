@@ -18,7 +18,7 @@ app.use(passport.session(
     new LocalStrategy(async function (username, password, done){
         try{
             // Buscar en la Base de datos
-            const user = await User.findOne({ where: {email: useremail} });
+            const user = await User.findOne({ where: {email: useremail}, where: {password: password} });
             if(!username){
                 done(null, false, {message: "Usuario y/o Password incorrectos"})
             }else if(!password){
