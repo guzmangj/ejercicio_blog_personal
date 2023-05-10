@@ -12,6 +12,11 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
+app.use(methodOverride("_method"));
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -19,22 +24,14 @@ app.use(
     saveUninitialized: false,
   }),
 );
-app.use(methodOverride("_method"));
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
-app.set("view engine", "ejs");
-
 
 
 app.use(passport.session());
 
-passport.use(new LocalStrategy(
-  {
-   usernameField: "email",
-  },
-  async function(username, password, done) { 
+passport.use(new LocalStrategy({ usernameField: "email"},
+  async function(email, password, done) { 
    try {
-    const user = await User.findOne({ where: { username } });
+    const user = await User.findOne({ where: { email } });
     
     if (!user) {
       console.log("Nombre de usuario no existe.");
