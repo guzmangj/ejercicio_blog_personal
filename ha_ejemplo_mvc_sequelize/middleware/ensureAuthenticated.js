@@ -3,7 +3,7 @@ function ensureAuthenticated(req, res, next) {
     return next();
   } else {
     req.session.redirectTo = req.query.redirectTo;
-    res.redirect("/login");
+    res.redirect("/usuarios/login");
   }
 }
 

@@ -1,4 +1,4 @@
-const session = require("express-session");
+const session = require("express-session")
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
@@ -39,4 +39,6 @@ function passportConfig() {
 
 module.exports = {
   passportConfig,
+  passport,
+  session
 };

@@ -1,12 +1,12 @@
-const passport = require("../config/passport");
+const {passport} = require("../config/passport");
 
-function login(req, res) {
+async function login(req, res) {
   passport.authenticate("local", {
-    successRedirect: "/usuarios/welcome",
+    successRedirect: "/panel/welcome",
     failureRedirect: "/usuarios/login",
   })(req, res);
 }
 
 module.exports = {
-  login,
+  login
 };
