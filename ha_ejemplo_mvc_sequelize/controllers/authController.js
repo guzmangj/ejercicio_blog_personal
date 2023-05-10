@@ -4,7 +4,7 @@ async function login(req, res, next) {
   passport.authenticate("local", {
     successRedirect: "/panel/welcome",
     failureRedirect: "/usuarios/login",
-  })(req, res, next);
+  })(req, res);
 }
 
 module.exports = {
