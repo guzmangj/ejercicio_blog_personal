@@ -20,11 +20,10 @@ app.use(
     saveUninitialized: false,
   }),
 );
-routes(app);
 app.use(passport.session());
 passportConfig();
 
-
+routes(app);
 
 app.listen(APP_PORT, () => {
   console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}.`);
