@@ -27,29 +27,31 @@ app.use(
 
 app.use(passport.session());
 
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "email",
-    },
-    async function (username, password, done) {
-      try {
-        // Buscar en la Base de datos
-        const user = await User.findOne({ where: { email: username } });
+passport.use(new LocalStrategy(
+  {
+   usernameField: "email",
+  },
+  async function(username, password, done) { 
+   try {
+    const user = await User.findOne({ where: { username } });
+    
+    if (!user) {
+      console.log("Nombre de usuario no existe.");
+      return done(null, false, { message: "Credenciales incorrectas." });
+    }
+    const match = await bcrypt.compare(password, user.password); 
+    if (!match) {
+      console.log("La contraseña es inválida.");
+      return done(null, false, { message: "Credenciales incorrectas." });
+    }
+    console.log("Credenciales verificadas correctamente");
+    return done(null, user);
 
-        if (!username) {
-          done(null, false, { message: "Usuario y/o Password incorrectos" });
-        } else if (!password) {
-          done(null, false, { message: "Usuario y/o Password incorrectos" });
-        } else {
-          return done(null, user);
-        }
-      } catch (error) {
-        return done(error);
-      }
-    },
-  ),
-);
+   }catch (error) {
+    done(error);
+   } 
+  }
+));
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
