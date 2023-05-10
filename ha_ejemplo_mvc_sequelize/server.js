@@ -71,12 +71,7 @@ app.get("/usuarios/welcome", function (req, res) {
   }
 });
 
-app.post("/usuarios/login",passport.authenticate("local", {
-    successRedirect: "/usuarios/welcome",
-    failureRedirect: "/",
-    failatureFlash: true,
-  }),
-);
+
 
 routes(app);
 
