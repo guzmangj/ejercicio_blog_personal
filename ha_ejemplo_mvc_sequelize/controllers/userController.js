@@ -1,11 +1,9 @@
 const { User } = require("../models");
-const express = require("express");
+const bcrypt = require("bcryptjs");
 
-const app = express();
+
 const flash = require("express-flash");
 
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -23,12 +21,17 @@ async function create(req, res) {
 // Store a newly created resource in storage.
 async function store(req, res) {
   const [user, created] = await User.findOrCreate({
-    // Ver opciones en Sequelize.
+    where: { email: req.body.email },
+    defaults:{
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      password: await bcrypt.hash(req.body.password, 5)
+    }
   });
   if (created) {
-    req.login(user, () => res.redirect("/admin"));
+    req.login(user, () => res.redirect("/panel"));
   } else {
-    res.redirect("back");
+    res.redirect("/usuarios/login");
   }
 }
 
