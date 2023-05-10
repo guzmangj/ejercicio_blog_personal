@@ -42,12 +42,6 @@ async function update(req, res) {}
 async function destroy(req, res) {}
 
 // Otros handlers...
-// async function login() {
-//   passport.authenticate("local", {
-//     successRedirect: "/welcome",
-//     failureRedirect: "/login",
-//   });
-// }
 
 async function showWelcome(req, res) {
   res.render("userWelcome");
@@ -62,5 +56,4 @@ module.exports = {
   update,
   showWelcome,
   destroy,
-  // login,
 };

@@ -1,7 +1,5 @@
 require("dotenv").config();
 
-const { User } = require("./models");
-
 const methodOverride = require("method-override");
 const express = require("express");
 const routes = require("./routes");
@@ -9,9 +7,7 @@ const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
 
 const session = require("express-session");
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
-const bcrypt = require("bcryptjs");
+const { passportConfig, passport } = require("./config/passport");
 
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
@@ -27,55 +23,56 @@ app.use(
 );
 
 app.use(passport.session());
+passportConfig();
 
-passport.use(
-  new LocalStrategy({ usernameField: "email" }, async function (email, password, done) {
-    try {
-      const user = await User.findOne({ where: { email } });
-      if (!user) {
-        console.log("Nombre de usuario no existe.");
-        return done(null, false, { message: "Credenciales incorrectas." });
-      }
-      const match = await bcrypt.compare(password, user.password);
-      if (!match) {
-        console.log("La contraseña es inválida.");
-        return done(null, false, { message: "Credenciales incorrectas." });
-      }
-      console.log("Credenciales verificadas correctamente");
-      return done(null, user);
-    } catch (error) {
-      return done(error);
-    }
-  }),
-);
+// passport.use(
+//   new LocalStrategy({ usernameField: "email" }, async function (email, password, done) {
+//     try {
+//       const user = await User.findOne({ where: { email } });
+//       if (!user) {
+//         console.log("Nombre de usuario no existe.");
+//         return done(null, false, { message: "Credenciales incorrectas." });
+//       }
+//       const match = await bcrypt.compare(password, user.password);
+//       if (!match) {
+//         console.log("La contraseña es inválida.");
+//         return done(null, false, { message: "Credenciales incorrectas." });
+//       }
+//       console.log("Credenciales verificadas correctamente");
+//       return done(null, user);
+//     } catch (error) {
+//       return done(error);
+//     }
+//   }),
+// );
 
-passport.serializeUser((user, done) => {
-  return done(null, user.id);
-});
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findByPk(id);
-    return done(null, user); // Usuario queda disponible en req.user.
-  } catch (err) {
-    return done(err);
-  }
-});
+// passport.serializeUser((user, done) => {
+//   return done(null, user.id);
+// });
+// passport.deserializeUser(async (id, done) => {
+//   try {
+//     const user = await User.findByPk(id);
+//     return done(null, user); // Usuario queda disponible en req.user.
+//   } catch (err) {
+//     return done(err);
+//   }
+// });
 
-app.post(
-  "/usuarios/login",
-  passport.authenticate("local", {
-    successRedirect: "/usuarios/welcome",
-    failureRedirect: "/usuarios/login",
-  }),
-);
+// app.post(
+//   "/usuarios/login",
+//   passport.authenticate("local", {
+//     successRedirect: "/usuarios/welcome",
+//     failureRedirect: "/usuarios/login",
+//   }),
+// );
 
-app.get("/usuarios/welcome", function (req, res) {
-  if (req.isAuthenticated()) {
-    res.send(`Te damos la bienvenida, ${req.user.firstname}!!!`);
-  } else {
-    res.redirect("/usuarios/login");
-  }
-});
+// app.get("/usuarios/welcome", function (req, res) {
+//   if (req.isAuthenticated()) {
+//     res.send(`Te damos la bienvenida, ${req.user.firstname}!!!`);
+//   } else {
+//     res.redirect("/usuarios/login");
+//   }
+// });
 
 routes(app);
 
