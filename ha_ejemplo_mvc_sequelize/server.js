@@ -46,20 +46,20 @@ passport.use(new LocalStrategy({ usernameField: "email"},
     return done(null, user);
 
    }catch (error) {
-    done(error);
+    return done(error);
    } 
   }
 ));
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  return done(null, user.id);
 });
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findByPk(id);
-    done(null, user); // Usuario queda disponible en req.user.
+    return done(null, user); // Usuario queda disponible en req.user.
   } catch (err) {
-    done(err);
+    return done(err);
   }
 });
 
