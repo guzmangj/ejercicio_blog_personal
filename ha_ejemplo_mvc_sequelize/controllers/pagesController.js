@@ -40,7 +40,23 @@ async function showPanel(req, res) {
       },
     ],
   });
-  res.render("admin", { articles });
+  const user = req.user;
+  const userArticles = await Article.findAll({
+    where:{
+      userId: user.id
+    },
+    include: [
+      {
+        model: User,
+        attributes: ["id", "firstname", "lastname"],
+      },
+    ],
+  })
+  console.log(userArticles)
+  res.render("admin", { 
+    userArticles,
+    user
+   });
 }
 
 async function showAboutUs(req, res) {
