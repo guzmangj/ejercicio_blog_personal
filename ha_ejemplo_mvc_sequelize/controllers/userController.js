@@ -2,6 +2,7 @@ const { User } = require("../models");
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const app = express();
+const flash = require("express-flash");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -40,8 +41,9 @@ async function destroy(req, res) {}
 // Otros handlers...
 async function login() {
   passport.authenticate("local", {
-    successRedirect: "/admin",
+    successRedirect: "/welcome",
     failureRedirect: "/login",
+    failureFlash: false
   });
 }
 
