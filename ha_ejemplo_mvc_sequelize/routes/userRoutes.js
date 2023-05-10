@@ -6,13 +6,13 @@ const userController = require("../controllers/userController");
 // ...
 
 router.get("/login", userController.index);
+router.post("/login", userController.login);
 router.get("/registro", userController.create);
 router.post("/registro", userController.store);
 router.get("/:id", userController.show);
 router.get("/:id/editar", userController.edit);
 router.patch("/:id", userController.update);
 router.delete("/:id", userController.destroy);
-router.post("/login", userController.login);
 router.get("/welcome", userController.showWelcome);
 
 module.exports = router;
