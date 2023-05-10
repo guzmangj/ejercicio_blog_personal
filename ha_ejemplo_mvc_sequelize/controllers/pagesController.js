@@ -32,6 +32,7 @@ async function showHome(req, res) {
 }
 
 async function showPanel(req, res) {
+  if(req.isAuthenticated()) {
   const articles = await Article.findAll({
     include: [
       {
@@ -41,6 +42,9 @@ async function showPanel(req, res) {
     ],
   });
   res.render("admin", { articles });
+  }else {
+    res.redirect("/login");
+  }
 }
 
 async function showAboutUs(req, res) {

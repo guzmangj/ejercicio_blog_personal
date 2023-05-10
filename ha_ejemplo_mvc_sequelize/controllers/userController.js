@@ -18,15 +18,14 @@ async function create(req, res) {
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-  const hashPassword = req.body.password;
-  const hashedPassword = await bcrypt.hash(hashPassword, 10);
-  const newUser = await User.create({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email,
-    password: hashedPassword,
+ const [user, created] = await User.findOrCreate({
+    // Ver opciones en Sequelize.
   });
-  res.redirect("/usuarios/login");
+  if (created) {
+req.login(user, () => res.redirect("/admin")); } else {
+res.redirect("back");
+
+};
 }
 
 // Show the form for editing the specified resource.
@@ -39,17 +38,11 @@ async function update(req, res) {}
 async function destroy(req, res) {}
 
 // Otros handlers...
-async function login(req, res) {
-  const user = await User.findAll({ where: { email: req.body.email } });
-  const inputPassword = req.body.password;
-  const storedHash = user.password;
-
-  const passwordCheck = bcrypt.compare(inputPassword, storedHash);
-  if (passwordCheck) {
-    res.redirect("/welcome");
-  } else {
-    res.redirect("/login");
-  }
+async function login() {
+  passport.authenticate("local", {
+    successRedirect: "/admin",
+    failureRedirect: "/login",
+  });
 }
 
 async function showWelcome(req, res) {
