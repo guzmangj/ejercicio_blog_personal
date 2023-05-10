@@ -1,8 +1,11 @@
 const { User } = require("../models");
 const express = require("express");
-const bcrypt = require("bcryptjs");
+
 const app = express();
 const flash = require("express-flash");
+
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -19,14 +22,14 @@ async function create(req, res) {
 
 // Store a newly created resource in storage.
 async function store(req, res) {
- const [user, created] = await User.findOrCreate({
+  const [user, created] = await User.findOrCreate({
     // Ver opciones en Sequelize.
   });
   if (created) {
-req.login(user, () => res.redirect("/admin")); } else {
-res.redirect("back");
-
-};
+    req.login(user, () => res.redirect("/admin"));
+  } else {
+    res.redirect("back");
+  }
 }
 
 // Show the form for editing the specified resource.
@@ -39,13 +42,12 @@ async function update(req, res) {}
 async function destroy(req, res) {}
 
 // Otros handlers...
-async function login() {
-  passport.authenticate("local", {
-    successRedirect: "/welcome",
-    failureRedirect: "/login",
-    failureFlash: false
-  });
-}
+// async function login() {
+//   passport.authenticate("local", {
+//     successRedirect: "/welcome",
+//     failureRedirect: "/login",
+//   });
+// }
 
 async function showWelcome(req, res) {
   res.render("userWelcome");
@@ -60,5 +62,5 @@ module.exports = {
   update,
   showWelcome,
   destroy,
-  login,
+  // login,
 };
