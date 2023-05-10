@@ -65,11 +65,11 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-app.get("/welcome", function (req, res) {
+app.get("/usuarios/welcome", function (req, res) {
   if (req.isAuthenticated()) {
     res.send(`Te damos la bienvenida, ${req.user.firstname}!!!`);
   } else {
-    res.redirect("/login");
+    res.redirect("/usuarios/login");
   }
 });
 
