@@ -12,18 +12,19 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-app.use(
-  session({
-    secret: "Esto es Nacional desde 1899, 124 de verdura",
-    resave: false,
-    saveUninitialized: false,
-  }),
-);
+
 
 app.use(passport.session());
 
