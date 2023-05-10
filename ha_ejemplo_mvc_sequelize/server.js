@@ -7,12 +7,16 @@ const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
 const session = require("express-session");
 const {passportConfig, passport} = require("./config/passport");
-
+const cookieParser = require("cookie-parser");
+const flash = require("express-flash");
+const flashMessages = require("connect-flash");
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(flash());
+app.use(cookieParser())
 app.set("view engine", "ejs");
-
+app.use(flashMessages());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,

@@ -52,7 +52,6 @@ async function showPanel(req, res) {
       },
     ],
   })
-  console.log(userArticles)
   res.render("admin", { 
     userArticles,
     user

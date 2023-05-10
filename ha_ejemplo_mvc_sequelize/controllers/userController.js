@@ -2,8 +2,6 @@ const { User } = require("../models");
 const bcrypt = require("bcryptjs");
 
 
-const flash = require("express-flash");
-
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -29,8 +27,12 @@ async function store(req, res) {
     }
   });
   if (created) {
+
+    req.flash('info', 'Se ha creado un usuario');
+    
     req.login(user, () => res.redirect("/panel"));
   } else {
+    req.flash('info', 'El usuario existe, no sea nabo vaya a loggearse');
     res.redirect("/usuarios/login");
   }
 }
