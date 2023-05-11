@@ -1,39 +1,34 @@
 const { User } = require("../models");
 const bcrypt = require("bcryptjs");
 
-
-
 // Display a listing of the resource.
-async function index(req, res) {
-  res.render("userLogin");
-}
+async function index(req, res) {}
 
 // Display the specified resource.
 async function show(req, res) {}
 
 // Show the form for creating a new resource
 async function create(req, res) {
-  res.render("userRegister", {
-    message
-  });
+  res.render("userRegister");
 }
 
 // Store a newly created resource in storage.
 async function store(req, res) {
   const [user, created] = await User.findOrCreate({
     where: { email: req.body.email },
-    defaults:{
+    defaults: {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      password: await bcrypt.hash(req.body.password, 5)
-    }
+      password: await bcrypt.hash(req.body.password, 5),
+    },
   });
   if (created) {
-    
+    req.flash("success", "EL USUARIO HA SIDO CREADO CORRECTAMENTE");
     req.login(user, () => res.redirect("/panel"));
   } else {
     req.flash("info", "EL USUARIO YA HA SIDO CREADO");
-    res.redirect("/usuarios/register");
+    res.redirect("/login");
+    console.log(req.session.flash);
   }
 }
 
