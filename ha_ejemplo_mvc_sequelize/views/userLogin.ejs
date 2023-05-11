@@ -15,9 +15,9 @@
   </head>
   <body>
     <section class="container mt-5 w-50">
-      <% if(locals.messages.info){ %>
-      <div class="alert alert-success">
-        <p><%= locals.messages.info %></p>
+      <% if(messages.info){ %>
+      <div class="alert alert-warning">
+        <p class="m-0"><%= messages.info %></p>
       </div>
       <% } %>
       <form method="post" action="/login" class="border rounded p-4 shadow">
