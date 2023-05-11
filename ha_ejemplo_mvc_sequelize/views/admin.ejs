@@ -42,7 +42,7 @@
             <th scope="row"><%= article.id %></th>
             <td><%= article.title %></td>
             <td><%= article.content.substring(0, 80)+"..." %></td>
-            <td><%= article.createdAt%></td>
+            <td><%=format(new Date(String(article.createdAt)), "yyyy'-'MM'-'dd kk:mm:ss" );%></td>
             <td><%= article.user.firstname%> <%= article.user.lastname%></td>
 
             <td>

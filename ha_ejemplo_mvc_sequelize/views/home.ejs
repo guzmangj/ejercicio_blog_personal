@@ -31,7 +31,7 @@
         </h2>
         <p class="articleInfo">
           Creado por <%= article.user.firstname %> <%= article.user.lastname %> el <%=
-          article.createdAt %>
+          format(new Date(String(article.createdAt)), "yyyy'-'MM'-'dd kk:mm:ss" ) %>
         </p>
       </div>
       <hr class="hr" />

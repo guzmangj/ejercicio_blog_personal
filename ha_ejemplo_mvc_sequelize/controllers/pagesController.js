@@ -30,7 +30,7 @@ async function showHome(req, res) {
     ],
   });
 
-  res.render("home", { articles });
+  res.render("home", { articles, format, es });
 }
 
 async function showPanel(req, res) {
