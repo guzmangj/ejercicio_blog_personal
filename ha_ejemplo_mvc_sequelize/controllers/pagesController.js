@@ -17,6 +17,8 @@
  */
 
 const { Article, Comment, User } = require("../models");
+const {format } = require("date-fns");
+const { es } = require("date-fns/locale");
 
 async function showHome(req, res) {
   const articles = await Article.findAll({
@@ -54,7 +56,9 @@ async function showPanel(req, res) {
   })
   res.render("admin", { 
     userArticles,
-    user
+    user,
+    format,
+    es
    });
 }
 
