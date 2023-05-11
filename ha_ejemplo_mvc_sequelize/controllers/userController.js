@@ -23,8 +23,11 @@ async function store(req, res) {
     },
   });
   if (created) {
-    req.flash("success", "EL USUARIO HA SIDO CREADO CORRECTAMENTE");
-    req.login(user, () => res.redirect("/panel"));
+    req.login(user, () => {
+      req.flash("success", "User created succesfully");
+      res.redirect("/panel")
+    }
+      );
   } else {
     req.flash("info", "User already exists, please log in");
     res.redirect("/login");
