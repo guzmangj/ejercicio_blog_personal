@@ -13,17 +13,18 @@ const flashMessages = require("connect-flash");
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use(flash());
 app.use(cookieParser())
-app.set("view engine", "ejs");
-app.use(flashMessages());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: { maxAge: 60000 }
   }),
 );
+app.use(flash());
+app.set("view engine", "ejs");
+app.use(flashMessages());
 app.use(passport.session());
 passportConfig();
 

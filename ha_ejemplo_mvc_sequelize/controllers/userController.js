@@ -13,7 +13,9 @@ async function show(req, res) {}
 
 // Show the form for creating a new resource
 async function create(req, res) {
-  res.render("userRegister");
+  res.render("userRegister", {
+    message
+  });
 }
 
 // Store a newly created resource in storage.
@@ -27,13 +29,11 @@ async function store(req, res) {
     }
   });
   if (created) {
-
-    req.flash('info', 'Se ha creado un usuario');
     
     req.login(user, () => res.redirect("/panel"));
   } else {
-    req.flash('info', 'El usuario existe, no sea nabo vaya a loggearse');
-    res.redirect("/usuarios/login");
+    req.flash("info", "EL USUARIO YA HA SIDO CREADO");
+    res.redirect("/usuarios/register");
   }
 }
 

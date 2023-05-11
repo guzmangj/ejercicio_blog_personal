@@ -7,6 +7,10 @@ async function login(req, res, next) {
     failureFlash: {
       type: "failureFlash",
       message: "todo mal, no te tengo en la DB"
+    },
+    successFlash: {
+      type: "successFlash",
+      message: "bien loggeado ahí!"
     }
   })(req, res);
 }
