@@ -6,7 +6,7 @@ const authController = require("../controllers/authController");
 // Rutas relacionadas a los usuarios:
 // ...
 
-router.get("/login", userController.index);
+router.get("/login", authController.login);
 router.get("/registro", userController.create);
 router.post("/registro", userController.store);
 router.get("/:id", userController.show);

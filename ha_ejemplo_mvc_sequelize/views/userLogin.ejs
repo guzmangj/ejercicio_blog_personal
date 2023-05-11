@@ -15,6 +15,11 @@
   </head>
   <body>
     <section class="container mt-5 w-50">
+      <% if(locals.messages.info){ %>
+      <div class="alert alert-success">
+        <p><%= locals.messages.info %></p>
+      </div>
+      <% } %>
       <form method="post" action="/panel/login" class="border rounded p-4 shadow">
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
