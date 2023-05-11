@@ -5,7 +5,5 @@ const pagesController = require("../controllers/pagesController");
 const authController = require("../controllers/authController");
 
 router.get("/", ensureAuthenticated, pagesController.showPanel);
-router.post("/login", authController.login);
-
 
 module.exports = router;
