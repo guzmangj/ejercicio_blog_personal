@@ -1,8 +1,27 @@
-const session = require("express-session")
+const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const {User} = require("../models");
+const { User } = require("../models");
 const bcrypt = require("bcryptjs");
+const GoogleStrategy = require("passport-google-oauth2").Strategy;
+
+function googleConfig() {
+  passport.use(
+    new GoogleStrategy(
+      {
+        clientID: GOOGLE_CLIENT_ID,
+        clientSecret: GOOGLE_CLIENT_SECRET,
+        callbackURL: "http://yourdomain:3000/auth/google/callback",
+        passReqToCallback: true,
+      },
+      function (request, accessToken, refreshToken, profile, done) {
+        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+          return done(err, user);
+        });
+      },
+    ),
+  );
+}
 
 function passportConfig() {
   passport.use(
@@ -21,7 +40,9 @@ function passportConfig() {
         console.log("Credenciales verificadas correctamente");
         return done(null, user);
       } catch (error) {
-        return done(null, false, { message: "Ocurrió un error inesperado. Por favor, reintentar." });
+        return done(null, false, {
+          message: "Ocurrió un error inesperado. Por favor, reintentar.",
+        });
       }
     }),
   );
@@ -42,5 +63,6 @@ function passportConfig() {
 module.exports = {
   passportConfig,
   passport,
-  session
+  session,
+  googleConfig,
 };
