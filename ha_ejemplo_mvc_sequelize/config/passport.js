@@ -11,7 +11,7 @@ function googleConfig() {
       {
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://yourdomain:3000/auth/google/callback",
+        callbackURL: "http://localhost:3000/",
         passReqToCallback: true,
       },
       function (request, accessToken, refreshToken, profile, done) {
