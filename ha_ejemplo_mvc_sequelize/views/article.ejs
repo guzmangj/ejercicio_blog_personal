@@ -36,14 +36,9 @@
         <form method="post">
           <!-- Name input -->
           <div class="form-outline">
-            <input
-              type="text"
-              id="form4Example1"
-              class="form-control"
-              placeholder="Name"
-              name="newName"
-            />
-            <label class="form-label" for="form4Example1"></label>
+         <% if(locals.isAuthenticated){ %>
+          <label class="form-label" for="form4Example1"><%=locals.user.firstname%> <%= locals.user.lastname%></label>
+          <% } %>
           </div>
 
           <!-- Message input -->
@@ -51,11 +46,9 @@
             <textarea
               class="form-control"
               rows="4"
-              name="newContent"
               placeholder="Message"
               name="newContent"
             ></textarea>
-            <label class="form-label" for="form4Example3"></label>
           </div>
 
           <!-- Submit button -->

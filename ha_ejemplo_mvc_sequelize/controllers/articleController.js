@@ -78,11 +78,14 @@ async function destroy(req, res) {
 // POST comment
 async function newComment(req, res) {
   const { newName, newContent } = req.body;
+  if(newContent.length > 0){
   const newComment = await Comment.create({
     content: newContent,
     name: newName,
     articleId: req.params.id,
+ 
   });
+  }
   return res.redirect(`/articulos/${req.params.id}`);
 }
 

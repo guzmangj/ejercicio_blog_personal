@@ -10,6 +10,7 @@ const { passportConfig, passport } = require("./config/passport");
 const cookieParser = require("cookie-parser");
 const flash = require("express-flash");
 const flashMessages = require("connect-flash");
+const makeUserAvailableInViews = require("./middleware/makeUserAvailableInViews");
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +28,8 @@ app.set("view engine", "ejs");
 app.use(flashMessages());
 app.use(passport.session());
 passportConfig();
+
+app.use(makeUserAvailableInViews);
 
 routes(app);
 

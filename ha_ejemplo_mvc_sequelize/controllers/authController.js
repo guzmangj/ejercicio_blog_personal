@@ -2,7 +2,7 @@ const { passport } = require("../config/passport");
 
 async function login(req, res, next) {
   passport.authenticate("local", {
-    successRedirect: "/panel",
+    successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: {
       type: "failureFlash",
@@ -19,7 +19,15 @@ async function showLogin(req, res) {
   res.render("userLogin");
 }
 
+async function logout(req, res) {
+  req.logout(function(error) {
+    if(error) { return next(error)}
+    res.redirect("/");
+  })
+}
+
 module.exports = {
   login,
   showLogin,
+  logout
 };
