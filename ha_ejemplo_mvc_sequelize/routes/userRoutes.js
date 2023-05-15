@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
-const isAdmin = require("../middleware/isAdmin");
+const isAdmin = require("../middlewares/isAdmin");
 // Rutas relacionadas a los usuarios:
 // ...
 

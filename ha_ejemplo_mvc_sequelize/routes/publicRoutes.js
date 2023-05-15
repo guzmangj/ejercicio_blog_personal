@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pagesController = require("../controllers/pagesController");
 const authController = require("../controllers/authController");
-const redirectIfAuthenticated = require("../middleware/redirectIfAuthenticated");
+const redirectIfAuthenticated = require("../middlewares/redirectIfAuthenticated");
 
 router.get("/", pagesController.showHome);
 router.get("/login", redirectIfAuthenticated, authController.showLogin);

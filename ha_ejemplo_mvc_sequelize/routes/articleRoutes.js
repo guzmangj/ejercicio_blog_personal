@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const articleController = require("../controllers/articleController");
-const ensureAuthenticated = require("../middleware/ensureAuthenticated");
-const atLeastWriter = require("../middleware/atLeastWriter");
-const atLeastEditor = require("../middleware/atLeastEditor");
-const isAdmin = require("../middleware/isAdmin");
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+const atLeastWriter = require("../middlewares/atLeastWriter");
+const atLeastEditor = require("../middlewares/atLeastEditor");
+const isAdmin = require("../middlewares/isAdmin");
 
 // Rutas relacionadas a los artículos:
 // ...

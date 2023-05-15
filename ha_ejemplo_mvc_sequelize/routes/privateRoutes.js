@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const ensureAuthenticated = require("../middleware/ensureAuthenticated");
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const pagesController = require("../controllers/pagesController");
-const atLeastWriter = require("../middleware/atLeastWriter");
-const atLeastEditor = require("../middleware/atLeastEditor");
-const isAdmin = require("../middleware/isAdmin");
+const atLeastWriter = require("../middlewares/atLeastWriter");
+const atLeastEditor = require("../middlewares/atLeastEditor");
+const isAdmin = require("../middlewares/isAdmin");
 
 router.get(
   "/",
