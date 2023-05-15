@@ -14,11 +14,15 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <%- include("./partials/navbar.ejs") %>
+    <%- include("./partials/navbar.ejs") %> <% if(messages.success) { %>
+    <div class="container my-5 alert alert-success">
+      <p><%= messages.success %></p>
+    </div>
+    <% } %>
     <div class="container mt-3">
       <div class="d-flex justify-content-between">
         <h1>User list</h1>
-        <a class="btn btn-success mb-3" href="/usuarios/crear">Create user</a>
+        <a class="btn btn-success mb-3" href="/panel/crear">Create user</a>
       </div>
       <table class="table table-striped table-bordered">
         <thead>
@@ -42,7 +46,7 @@
               <a class="btn btn-primary mb-1" method="GET" href="/usuarios/<%= user.id%>/editar"
                 >Editar</a
               >
-              <form method="POST" action="/usuarios/<%=user.id%>?_method=DELETE">
+              <form method="POST" action="/panel/delete/<%=user.id%>?_method=DELETE">
                 <button type="submit" class="btn btn-danger mb-1">Eliminar</button>
               </form>
             </td>

@@ -24,9 +24,13 @@
           <div class="my-3">
             <select class="form-select" aria-label="Default select example" name="userId">
               <option selected>Authors</option>
-              <% for (const user of users) { %>
+              <% if(locals.user.roleId >= 400) { %> <% for (const user of locals.user.users) { %>
               <option value="<%=user.id%>"><%= user.firstname%> <%= user.lastname%></option>
-              <%}%>
+              <%}%> <%} else{ %>
+              <option value="<%=locals.user.id%>">
+                <%= locals.user.firstname%> <%= locals.user.lastname%>
+              </option>
+              <% } %>
             </select>
           </div>
           <div class="mb-3">

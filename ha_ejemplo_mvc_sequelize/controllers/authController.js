@@ -28,21 +28,21 @@ async function logout(req, res) {
   });
 }
 
-async function googleLogin(req, res, next) {
-  passport.authenticate("google", { scope: ["email", "profile"] });
-}
+// async function googleLogin(req, res, next) {
+//   passport.authenticate("google", { scope: ["email", "profile"] });
+// }
 
-async function googleCallback(req, res, next) {
-  passport.authenticate("google", {
-    successRedirect: "/auth/google/success",
-    failureRedirect: "/auth/google/failure",
-  })(req, res);
-}
+// async function googleCallback(req, res, next) {
+//   passport.authenticate("google", {
+//     successRedirect: "/auth/google/success",
+//     failureRedirect: "/auth/google/failure",
+//   })(req, res);
+// }
 
 module.exports = {
   login,
   showLogin,
   logout,
-  googleCallback,
-  googleLogin,
+  // googleCallback,
+  // googleLogin,
 };

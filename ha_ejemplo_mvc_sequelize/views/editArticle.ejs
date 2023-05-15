@@ -20,12 +20,17 @@
         <div class="py-2 border-bottom">
           <h3>Edit article</h3>
         </div>
-        <form method="POST" action="/articulos/<%=articles.id%>?_method=PATCH">
+        <form method="POST" action="/articulos/<%=locals.user.article.id%>?_method=PATCH">
           <div class="my-3">
-            <select name="userId" class="form-select" aria-label="Default select example">
-              <% for (const user of users) { %>
-              <option value="<%user.id%>"><%= user.firstname%> <%= user.lastname%></option>
-              <%}%>
+            <select class="form-select" aria-label="Default select example" name="userId">
+              <option selected>Authors</option>
+              <% if(locals.user.roleId >= 300) { %> <% for (const user of locals.user.users) { %>
+              <option value="<%=user.id%>"><%= user.firstname%> <%= user.lastname%></option>
+              <%}%> <%} else{ %>
+              <option value="<%=locals.user.id%>">
+                <%= locals.user.firstname%> <%= locals.user.lastname%>
+              </option>
+              <% } %>
             </select>
           </div>
           <div class="mb-3">
@@ -35,14 +40,14 @@
               id="inputTitle"
               placeholder="Title..."
               name="title"
-              value="<%= articles.title %>"
+              value="<%= locals.user.article.title %>"
             />
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label fw-bold">Content</label>
             <div class="form-outline mb-4">
               <textarea class="form-control" id="form4Example3" rows="4" name="content">
-<%= articles.content %></textarea
+<%= locals.user.article.content %></textarea
               >
             </div>
           </div>

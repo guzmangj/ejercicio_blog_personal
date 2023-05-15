@@ -33,6 +33,7 @@ async function store(req, res) {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       password: await bcrypt.hash(req.body.password, 5),
+      roleId: req.body.roleId,
     },
   });
   if (created) {
@@ -60,19 +61,13 @@ async function update(req, res) {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
-      role: req.body.role,
+      roleId: req.body.roleId,
     },
     {
       where: { id: req.params.id },
     },
   );
   return res.redirect("/usuarios");
-}
-
-async function createUser(req, res) {
-  const users = await User.findAll();
-  const roles = await Role.findAll();
-  return res.render("userEdit", { users, roles });
 }
 
 // Remove the specified resource from storage.
@@ -88,5 +83,4 @@ module.exports = {
   edit,
   update,
   destroy,
-  createUser,
 };

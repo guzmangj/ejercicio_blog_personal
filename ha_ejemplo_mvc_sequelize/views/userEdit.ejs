@@ -20,40 +20,32 @@
         <div class="py-2">
           <h3>User edit</h3>
         </div>
-        <form method="POST" action="/usuarios/<%=user.id%>?_method=PATCH">
+        <form method="POST" action="/usuarios/<%=locals.user.id%>?_method=PATCH">
           <div class="my-3">
-            <label class="form-label fw-bold">Firstname</label>
+            <label for="firstname" class="form-label fw-bold">Firstname</label>
             <input
               class="form-control"
-              id="inputTitle"
-              placeholder="Title..."
-              name="title"
+              id="firstname"
+              name="firstname"
               value="<%= user.firstname %>"
             />
           </div>
           <div class="mb-3">
-            <label class="form-label fw-bold">Lastname</label>
+            <label for="lastname" class="form-label fw-bold">Lastname</label>
             <input
               class="form-control"
-              id="inputTitle"
-              placeholder="Title..."
-              name="title"
+              id="lastname"
+              name="lastname"
               value="<%= user.lastname %>"
             />
           </div>
           <div class="mb-3">
-            <label class="form-label fw-bold">Lastname</label>
-            <input
-              class="form-control"
-              id="inputTitle"
-              placeholder="Title..."
-              name="title"
-              value="<%= user.email %>"
-            />
+            <label for="email" class="form-label fw-bold">Email</label>
+            <input class="form-control" id="email" name="email" value="<%= user.email %>" />
           </div>
           <div class="mb-3">
-            <label class="form-label fw-bold">Role</label>
-            <select class="form-select" aria-label="Default select example">
+            <label for="roleId" class="form-label fw-bold">Role</label>
+            <select name="roleId" class="form-select" aria-label="Default select example">
               <% for (const role of roles) { %>
               <option value="<%= role.id %>"><%= role.role %></option>
               <% } %>

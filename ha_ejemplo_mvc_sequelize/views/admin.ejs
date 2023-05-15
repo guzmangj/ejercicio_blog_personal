@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <%- include("./partials/navbar.ejs") %>
-    <% if(messages.success) { %>
+    <%- include("./partials/navbar.ejs") %> <% if(messages.success) { %>
     <div class="container my-5 alert alert-success">
       <p><%= messages.success %></p>
     </div>
@@ -37,7 +36,7 @@
           </tr>
         </thead>
         <tbody>
-          <% for (const article of userArticles) { %>
+          <% for (const article of locals.user.articles) { %>
           <tr>
             <th scope="row"><%= article.id %></th>
             <td><%= article.title %></td>

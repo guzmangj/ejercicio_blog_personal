@@ -2,14 +2,16 @@
   <div class="container">
     <a class="navbar-brand text-light bg-dark" href="/">Hack the Blog</a>
     <div>
-      <% if( locals.isAuthenticated) { %>
+      <% if( locals.isAuthenticated ) { %> <% if( locals.user.roleId !== 100){ %>
       <a class="btn btn-primary" href="/panel" role="button">Admin</a>
+      <% if( locals.user.roleId === 400){ %>
+      <a class="btn btn-light" href="/usuarios" role="button">Usuarios</a>
+      <% } %> <% } %>
       <a class="btn btn-danger" href="/logout" role="button">Logout</a>
       <p style="color: white">Welcome, <%=locals.user.firstname%></p>
       <% }else { %>
       <a class="btn btn-secondary" href="/login" role="button">Login</a>
       <% } %>
-      <a class="btn btn-secondary" href="/usuarios" role="button">Usuarios</a>
     </div>
   </div>
 </nav>

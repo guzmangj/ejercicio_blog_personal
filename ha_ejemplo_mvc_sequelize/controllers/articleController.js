@@ -1,5 +1,5 @@
 const { Article, Comment, User } = require("../models");
-const {format } = require("date-fns");
+const { format } = require("date-fns");
 const { es } = require("date-fns/locale");
 const formidable = require("formidable");
 
@@ -38,21 +38,9 @@ async function store(req, res) {
   return res.redirect("/panel");
 }
 
-async function newComment(req, res) {
-  const { newName, newContent } = req.body;
-  const newComment = await Comment.create({
-    content: newContent,
-    name: newName,
-    articleId: req.params.id,
-  });
-  return res.redirect(`/articulos/${req.params.id}`);
-}
-
 // Show the form for editing the specified resource.
 async function edit(req, res) {
-  const articles = await Article.findByPk(req.params.id);
-  const users = await User.findAll();
-  return res.render("editArticle", { articles, users });
+  return res.render("editArticle");
 }
 
 // Update the specified resource in storage.
@@ -61,6 +49,7 @@ async function update(req, res) {
     {
       title: req.body.title,
       content: req.body.content,
+      userId: req.body.userId,
     },
     {
       where: { id: req.params.id },
@@ -71,20 +60,35 @@ async function update(req, res) {
 
 // Remove the specified resource from storage.
 async function destroy(req, res) {
-  const deleteArticle = await Article.destroy({ where: { id: req.params.id } });
+  if (req.user.roleId >= 400) {
+    const deleteArticle = await Article.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+  } else {
+    const deleteArticle = await Article.destroy({
+      where: {
+        id: req.params.id,
+        userId: req.user.id,
+      },
+    });
+  }
   return res.redirect("/panel");
 }
 
 // POST comment
 async function newComment(req, res) {
-  const { newName, newContent } = req.body;
-  if(newContent.length > 0){
-  const newComment = await Comment.create({
-    content: newContent,
-    name: newName,
-    articleId: req.params.id,
- 
-  });
+  const { name, content } = req.body;
+  if (content.length > 0) {
+    await Comment.create({
+      content,
+      name,
+      articleId: req.params.id,
+    });
+  } else {
+    req.flash("info", "the comment must have content");
+    res.redirect("/");
   }
   return res.redirect(`/articulos/${req.params.id}`);
 }

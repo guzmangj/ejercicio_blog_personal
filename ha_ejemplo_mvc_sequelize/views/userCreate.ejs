@@ -20,7 +20,7 @@
         <div class="py-2">
           <h3>User create</h3>
         </div>
-        <form method="POST" action="/usuarios">
+        <form method="POST" action="/panel/crear">
           <div class="mb-3">
             <label class="form-label fw-bold">Firstname</label>
             <input
@@ -39,8 +39,12 @@
             <input class="form-control" id="email" placeholder="email..." name="email" />
           </div>
           <div class="mb-3">
-            <label class="form-label fw-bold">Role</label>
-            <select class="form-select" aria-label="Default select example">
+            <label for="password" class="form-label fw-bold">Passowrd</label>
+            <input class="form-control" id="password" name="password" />
+          </div>
+          <div class="mb-3">
+            <label for="roleId" class="form-label fw-bold">Role</label>
+            <select name="roleId" class="form-select" aria-label="Default select example">
               <% for (const role of roles) { %>
               <option value="<%= role.id %>"><%= role.role %></option>
               <% } %>
