@@ -19,8 +19,8 @@
       <div>
         <h1 class="mainTitle"><%= articles.title %></h1>
         <p class="text-white">
-          Creado por <%= articles.user.firstname %> <%= articles.user.lastname %> el <%=
-          articles.createdAt %>
+          <%="Creado por "+ articles.user.firstname +" "+ articles.user.lastname + " el " +
+          format(new Date(String(articles.createdAt)), " dd' de 'MMMM' , 'yyyy", {locale: es}) %>
         </p>
       </div>
     </div>
@@ -36,9 +36,11 @@
         <form method="post">
           <!-- Name input -->
           <div class="form-outline">
-         <% if(locals.isAuthenticated){ %>
-          <label class="form-label" for="form4Example1"><%=locals.user.firstname%> <%= locals.user.lastname%></label>
-          <% } %>
+            <% if(locals.isAuthenticated){ %>
+            <label class="form-label" for="form4Example1"
+              ><%=locals.user.firstname%> <%= locals.user.lastname%></label
+            >
+            <% } %>
           </div>
 
           <!-- Message input -->
@@ -56,7 +58,7 @@
         </form>
       </div>
       <div>
-        <h5 class="comment">Comments (<%= comments.length  %>)</h5>
+        <h5 class="comment">Comments (<%= comments.length %>)</h5>
         <% for (const comment of comments) {%>
         <div>
           <p class="articleComment mb-0">"<%= comment.content %>"</p>
